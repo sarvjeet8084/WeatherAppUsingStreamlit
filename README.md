@@ -1,2 +1,91 @@
-# WeatherAppUsingStreamlit
-this is my weather app using python for programming language and Streamlit for using interface with integration openweatherapi
+🎯 What This Code Does
+This is a Streamlit-based Weather Forecast App that:
+•	Fetches real-time weather & 5-day forecast data from the OpenWeatherMap API
+•	Displays the location on an interactive Folium map
+•	Plots a 24-hour temperature trend using Plotly
+•	Shows a stylish 5-day forecast with icons & metrics
+________________________________________
+🛠 Core Components Explained
+1️⃣ Imports & API Setup
+python
+CopyEdit
+import streamlit as st
+import requests
+from datetime import datetime
+from streamlit_folium import st_folium
+import folium
+import plotly.graph_objects as go
+•	streamlit → For creating the web app UI
+•	requests → Fetch weather data from API
+•	datetime → Format and manage timestamps
+•	folium & streamlit_folium → Interactive maps
+•	plotly → Stylish graphs for temperature trends
+•	API_KEY → Your personal OpenWeatherMap access key 🔑
+________________________________________
+2️⃣ Fetching Weather Data
+python
+CopyEdit
+def get_weather_data(city):
+    url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API_KEY}&units=metric"
+•	Sends a request to OpenWeatherMap for the 5-day forecast (in metric units 🌡)
+•	Handles network errors gracefully using try-except
+•	Returns JSON data for later processing
+________________________________________
+3️⃣ Displaying the Location on a Map
+python
+CopyEdit
+def display_map(lat, lon):
+    m = folium.Map(location=[lat, lon], zoom_start=10)
+    folium.Marker([lat, lon], tooltip="Location").add_to(m)
+•	Centers the map on the city’s coordinates
+•	Adds a marker pin at the exact location 📍
+•	Integrated with Streamlit via st_folium
+________________________________________
+4️⃣ 24-Hour Temperature Plot
+python
+CopyEdit
+def plot_24h_forecast(data):
+    times = [datetime.fromtimestamp(item["dt"]) for item in data["list"][:8]]
+    temps = [item["main"]["temp"] for item in data["list"][:8]]
+•	Extracts first 8 forecast entries (3-hour intervals → ~24 hours)
+•	Uses Plotly line + marker chart for a polished look
+•	Displays temperature trends 📈
+________________________________________
+5️⃣ Generating the 5-Day Forecast
+python
+CopyEdit
+if dt_txt.endswith("12:00:00"):
+    forecast[date] = {
+        "temp": item["main"]["temp"],
+        "desc": item["weather"][0]["description"].title(),
+        "icon": item["weather"][0]["icon"]
+    }
+•	Picks only the midday forecast (to keep consistency)
+•	Saves temperature, description, and weather icon ☀️🌧️🌩️
+________________________________________
+6️⃣ Streamlit UI Layout
+•	st.set_page_config → Wide layout for side-by-side view
+•	City input → User types city name
+•	Map on left, weather details on right using:
+python
+CopyEdit
+col1, col2 = st.columns(2)
+•	Displays:
+o	Map
+o	Current temperature, humidity, wind speed
+o	24-hour temperature graph
+o	5-day forecast with icons and captions
+________________________________________
+🌟 UI Flow
+1.	User enters city name → Clicks "Get Forecast"
+2.	API fetches forecast → Saves data in st.session_state (so UI doesn’t reset on refresh)
+3.	Map + Current Weather Metrics show up
+4.	Interactive 24-hour Plotly chart appears
+5.	5-Day forecast cards display neatly in columns
+________________________________________
+✨ Why This App Feels Modern
+•	Interactive map instead of static location
+•	Plotly charts for better visualization
+•	Responsive two-column layout
+•	Dynamic weather icons for a friendly UI
+•	Error handling so it won’t crash on bad input
