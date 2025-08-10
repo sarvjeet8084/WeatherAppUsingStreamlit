@@ -101,12 +101,7 @@ bash
 Copy
 Edit
 main.py
-📂 Example path:
 
-makefile
-Copy
-Edit
-C:\Users\sarvj\Chatra College\weather app streamlit\main.py
 2️⃣ Install Required Packages
 Open your terminal (Command Prompt, Anaconda Prompt, or PowerShell) and run:
 
@@ -117,16 +112,13 @@ pip install streamlit requests folium streamlit-folium plotly
 3️⃣ Run the App
 Navigate to your project folder in terminal:
 
-bash
-Copy
-Edit
-cd "C:\Users\sarvj\Chatra College\weather app streamlit"
-Then run:
 
 bash
 Copy
 Edit
+
 streamlit run main.py
+
 4️⃣ Open in Browser
 After running, Streamlit will show a link like:
 
@@ -141,4 +133,11 @@ Type a city name in the input box
 
 Click Get Forecast
 
+
 View the map, current weather, 24-hour temperature graph, and 5-day forecast.
+
+<img width="1783" height="638" alt="image" src="https://github.com/user-attachments/assets/63d50c27-0ab7-4ca0-bf08-172712ba7598" />
+<img width="1823" height="879" alt="image" src="https://github.com/user-attachments/assets/d8c803d7-2175-459c-b6b1-26e119ef6ce7" />
+<img width="1642" height="545" alt="image" src="https://github.com/user-attachments/assets/37aa8a37-a5f3-4bd3-a335-2ab6b6c9408c" />
+
+
