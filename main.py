@@ -52,7 +52,7 @@ def get_5_day_forecast(data):
 
 # --- STREAMLIT UI ---
 st.set_page_config(page_title="Weather Forecast App", layout="wide")
-st.title("🌦️ Weather Forecast App with Map")
+st.title(" Weather Forecast App with Map")
 
 # Store data in session_state to persist after reruns
 if "data" not in st.session_state:
@@ -86,7 +86,7 @@ if st.session_state.data:
 
         st.plotly_chart(plot_24h_forecast(data), use_container_width=True)
 
-        st.subheader("🌤️ 5-Day Forecast")
+        st.subheader(" 5-Day Forecast")
         forecast = get_5_day_forecast(data)
         if forecast:
             cols = st.columns(len(forecast))
